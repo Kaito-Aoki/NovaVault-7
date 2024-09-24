@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Place Details - Explore Kutch</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Custom Styles */
+
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    /* Navbar Styles */
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    /* Header Styles */
+    .header {
+      padding: 40px 0;
+      background: url('https://via.placeholder.com/1500x300') no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+
+    /* Detail Content */
+    .detail-content img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    .detail-content h2 {
+      font-weight: 700;
+      color: #343a40;
+    }
+
+    .detail-section {
+      margin-top: 20px;
+    }
+
+    .detail-section h4 {
+      color: #343a40;
+      margin-bottom: 10px;
+    }
+
+    .back-button {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">NovaVault</a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <!-- Navigation Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Share Your Stories!</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header Section -->
+  <div class="header">
+    <h1>Place Details</h1>
+  </div>
+
+  <!-- Detail Content -->
+  <div class="container mt-4 detail-content" id="detailContent">
+    <!-- Dynamic Content will be loaded here -->
+  </div>
+
+  <!-- Back Button -->
+  <div class="container text-center back-button">
+    <a href="index.html" class="btn btn-primary">← Back to Explore Kutch</a>
+  </div>
+
+  <!-- Bootstrap JS and Dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script>
+    // Array to store place information with actual Kutch locations
+    const places = [
+      // Must Visit
+      { 
+        index: 0, 
+        category: "Must Visit", 
+        title: "Rann of Kutch", 
+        description: "A vast salt marsh known for its stunning white landscape and the Rann Utsav festival.", 
+        tags: ["salt marsh", "Rann Utsav", "festival", "white landscape", "desert"],
+        details: {
+          how_to_go: "Rann of Kutch is accessible by road from major cities like Ahmedabad. The nearest airport is Bhuj Airport.",
+          speciality: "Stunning white salt desert, Rann Utsav festival.",
+          season: "Best visited during Rann Utsav from November to February.",
+          nearby_hotels: "Taj Gateway, Hilton Garden Inn, and various eco-friendly tents during Rann Utsav.",
+          cuisines: "Local Kutchi cuisine including Dabeli, Kachori, and traditional Gujarati thali."
+        }
+      },
+      { 
+        index: 1, 
+        category: "Must Visit", 
+        title: "Kalo Dungar", 
+        description: "The highest point in Kutch offering panoramic views of the Great Rann and the Pakistani border.", 
+        tags: ["viewpoint", "highest point", "panoramic", "Great Rann", "border"],
+        details: {
+          how_to_go: "Located approximately 35 km from Bhuj, accessible by road.",
+          speciality: "Panoramic views, religious significance with Jain temple.",
+          season: "Best visited during winter months from November to February.",
+          nearby_hotels: "Nearby accommodations in Bhuj include several hotels and guesthouses.",
+          cuisines: "Local snacks and tea available at small stalls."
+        }
+      },
+      { 
+        index: 2, 
+        category: "Must Visit", 
+        title: "Mandvi Beach", 
+        description: "A pristine beach ideal for relaxation and water activities, famous for its Vijay Vilas Palace.", 
+        tags: ["beach", "Vijay Vilas Palace", "water activities", "relaxation", "pristine"],
+        details: {
+          how_to_go: "Mandvi is well-connected by road and rail. The nearest airport is Bhuj Airport.",
+          speciality: "Beautiful beach, Vijay Vilas Palace, sailing activities.",
+          season: "Best visited from October to March.",
+          nearby_hotels: "Hotel Mandvi, Beach Resort Mandvi, and various guesthouses.",
+          cuisines: "Seafood specialties, traditional Gujarati dishes."
+        }
+      },
+      { 
+        index: 3, 
+        category: "Must Visit", 
+        title: "Banni Grasslands", 
+        description: "A unique ecosystem home to diverse flora and fauna, perfect for wildlife enthusiasts.", 
+        tags: ["grasslands", "wildlife", "ecosystem", "flora", "fauna"],
+        details: {
+          how_to_go: "Accessible via Bhuj, with guided tours available.",
+          speciality: "Diverse wildlife, traditional shepherd communities.",
+          season: "Best visited from November to February.",
+          nearby_hotels: "Eco-resorts and guesthouses in nearby villages.",
+          cuisines: "Traditional shepherd cuisine, locally sourced ingredients."
+        }
+      },
+      { 
+        index: 4, 
+        category: "Must Visit", 
+        title: "Narayan Sarovar", 
+        description: "A sacred lake surrounded by temples, attracting pilgrims and nature lovers alike.", 
+        tags: ["sacred lake", "temples", "pilgrimage", "nature", "spiritual"],
+        details: {
+          how_to_go: "Located near Bhuj, accessible by road and rail.",
+          speciality: "Spiritual significance, serene environment.",
+          season: "Best visited from October to March.",
+          nearby_hotels: "Hotels and guesthouses in Bhuj and surrounding areas.",
+          cuisines: "Vegetarian local cuisine, prasad offerings."
+        }
+      },
+
+      // Hidden Gems
+      { 
+        index: 5, 
+        category: "Hidden Gems", 
+        title: "Kutch Desert Wildlife Sanctuary", 
+        description: "A sanctuary that conserves the unique wildlife of the Kutch region, including the Indian wild ass.", 
+        tags: ["wildlife sanctuary", "Indian wild ass", "conservation", "unique wildlife"],
+        details: {
+          how_to_go: "Accessible via Bhuj, with guided safari tours available.",
+          speciality: "Conservation of Indian wild ass, diverse flora and fauna.",
+          season: "Best visited from November to March.",
+          nearby_hotels: "Eco-lodges and safari camps.",
+          cuisines: "Local delicacies served at safari camps."
+        }
+      },
+      { 
+        index: 6, 
+        category: "Hidden Gems", 
+        title: "Bhujodi Village", 
+        description: "A crafts village renowned for its handloom weaving and traditional Kutchi textiles.", 
+        tags: ["crafts village", "handloom", "Kutchi textiles", "traditional", "weaving"],
+        details: {
+          how_to_go: "Located about 8 km from Bhuj, accessible by road.",
+          speciality: "Handloom weaving, traditional Kutchi crafts.",
+          season: "Year-round, best during cooler months.",
+          nearby_hotels: "Guesthouses and homestays in Bhuj.",
+          cuisines: "Traditional Kutchi snacks and meals available at local eateries."
+        }
+      },
+      { 
+        index: 7, 
+        category: "Hidden Gems", 
+        title: "Kutch Museum", 
+        description: "The oldest museum in Gujarat showcasing the rich cultural heritage and history of Kutch.", 
+        tags: ["museum", "cultural heritage", "history", "Gujarat"],
+        details: {
+          how_to_go: "Located in Bhuj, accessible by road and rail.",
+          speciality: "Extensive collection of Kutch artifacts, exhibits on local history.",
+          season: "Best visited from October to March.",
+          nearby_hotels: "Various hotels and guesthouses in Bhuj.",
+          cuisines: "Cafes and restaurants within and around the museum."
+        }
+      },
+      { 
+        index: 8, 
+        category: "Hidden Gems", 
+        title: "Aina Mahal", 
+        description: "A historic palace in Bhuj with intricate mirror work and beautiful architecture.", 
+        tags: ["historic palace", "mirror work", "architecture", "Bhuj"],
+        details: {
+          how_to_go: "Located in Bhuj, accessible by road and rail.",
+          speciality: "Intricate mirror work, architectural beauty, historical significance.",
+          season: "Best visited from October to March.",
+          nearby_hotels: "Hotels and guesthouses in Bhuj.",
+          cuisines: "Local restaurants and cafes nearby."
+        }
+      },
+      { 
+        index: 9, 
+        category: "Hidden Gems", 
+        title: "Tera Fort", 
+        description: "An ancient fort offering a glimpse into the region's regal past and architectural prowess.", 
+        tags: ["ancient fort", "regal past", "architecture", "historical"],
+        details: {
+          how_to_go: "Located near Bhuj, accessible by road.",
+          speciality: "Historical architecture, panoramic views from the fort.",
+          season: "Best visited from October to March.",
+          nearby_hotels: "Accommodations available in Bhuj.",
+          cuisines: "Local street food available near the fort."
+        }
+      },
+
+      // Unique Experiences
+      { 
+        index: 10, 
+        category: "Unique Experiences", 
+        title: "Rann Utsav", 
+        description: "An annual cultural festival celebrating the art, music, and crafts of Kutch amidst the Rann of Kutch.", 
+        tags: ["cultural festival", "art", "music", "crafts", "annual"],
+        details: {
+          how_to_go: "Held in the Rann of Kutch, accessible via Bhuj Airport or road from Ahmedabad.",
+          speciality: "Cultural performances, artisan workshops, adventure activities.",
+          season: "November to February during Rann Utsav.",
+          nearby_hotels: "Eco-friendly tents and resorts set up during the festival.",
+          cuisines: "Variety of local and international cuisines available at festival stalls."
+        }
+      },
+      { 
+        index: 11, 
+        category: "Unique Experiences", 
+        title: "White Desert Safari", 
+        description: "A thrilling safari experience across the vast white salt desert, ideal for adventure seekers.", 
+        tags: ["safari", "white desert", "adventure", "thrilling"],
+        details: {
+          how_to_go: "Organized tours available from Bhuj, accessible by road.",
+          speciality: "Adventure safari, dune bashing, camel rides.",
+          season: "Best during winter months from November to February.",
+          nearby_hotels: "Safari camps and eco-lodges in the desert.",
+          cuisines: "Campfire meals and traditional dishes served at safari camps."
+        }
+      },
+      { 
+        index: 12, 
+        category: "Unique Experiences", 
+        title: "Local Craft Workshops", 
+        description: "Interactive workshops where visitors can learn traditional Kutchi crafts and textiles.", 
+        tags: ["workshops", "crafts", "textiles", "interactive", "learn"],
+        details: {
+          how_to_go: "Available in Bhuj and Bhujodi villages, accessible by road.",
+          speciality: "Hands-on experience with local artisans, traditional crafting techniques.",
+          season: "Year-round, best during cooler months.",
+          nearby_hotels: "Accommodations in Bhuj and nearby villages.",
+          cuisines: "Local snacks and meals provided during workshops."
+        }
+      },
+      { 
+        index: 13, 
+        category: "Unique Experiences", 
+        title: "Sunset at Kalo Dungar", 
+        description: "Witness breathtaking sunsets over the salt flats from the highest vantage point in Kutch.", 
+        tags: ["sunset", "Kalo Dungar", "salt flats", "breathtaking", "vantage point"],
+        details: {
+          how_to_go: "Located near Bhuj, accessible by road.",
+          speciality: "Stunning sunset views, photography opportunities.",
+          season: "Best during October to February.",
+          nearby_hotels: "Accommodations available in Bhuj.",
+          cuisines: "Light refreshments available at viewing points."
+        }
+      },
+      { 
+        index: 14, 
+        category: "Unique Experiences", 
+        title: "Bird Watching in Banni", 
+        description: "Experience diverse bird species in their natural habitat within the Banni Grasslands.", 
+        tags: ["bird watching", "diverse species", "natural habitat", "Banni Grasslands"],
+        details: {
+          how_to_go: "Accessible via Bhuj, with guided bird-watching tours.",
+          speciality: "Diverse bird species, serene natural environment.",
+          season: "Best from October to March.",
+          nearby_hotels: "Eco-resorts and lodges in nearby villages.",
+          cuisines: "Local cuisine served at resorts and lodges."
+        }
+      },
+
+      // Special
+      { 
+        index: 15, 
+        category: "Special", 
+        title: "Great Rann of Kutch", 
+        description: "The largest salt desert in the world, known for its mesmerizing landscapes and vibrant festivals.", 
+        tags: ["largest salt desert", "Great Rann", "mesmerizing landscapes", "festivals", "salt marsh"],
+        details: {
+          how_to_go: "Accessible via Bhuj Airport or road from Ahmedabad.",
+          speciality: "Vast salt desert, vibrant cultural festivals, stunning night skies.",
+          season: "Best during Rann Utsav from November to February.",
+          nearby_hotels: "Eco-tents and luxury resorts during festivals.",
+          cuisines: "Diverse food stalls offering local and international cuisines during festivals."
+        }
+      }
+    ];
+
+    // Function to get URL parameter
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Function to display place details
+    function displayDetails() {
+      const id = parseInt(getQueryParam('id'));
+      const place = places.find(p => p.index === id);
+
+      const detailContent = document.getElementById('detailContent');
+
+      if (place) {
+        const imageName = place.title.toLowerCase().replace(/\s+/g, '_'); // e.g., "Rann of Kutch" -> "rann_of_kutch"
+        const content = `
+          <img src="https://via.placeholder.com/1200x400?text=${encodeURIComponent(place.title)}" alt="${place.title}">
+          <h2>${place.title}</h2>
+          <p>${place.description}</p>
+          
+          <div class="detail-section">
+            <h4>How to Go</h4>
+            <p>${place.details.how_to_go}</p>
+          </div>
+
+          <div class="detail-section">
+            <h4>Speciality</h4>
+            <p>${place.details.speciality}</p>
+          </div>
+
+          <div class="detail-section">
+            <h4>Best Season to Visit</h4>
+            <p>${place.details.season}</p>
+          </div>
+
+          <div class="detail-section">
+            <h4>Nearby Hotels</h4>
+            <p>${place.details.nearby_hotels}</p>
+          </div>
+
+          <div class="detail-section">
+            <h4>Local Cuisines</h4>
+            <p>${place.details.cuisines}</p>
+          </div>
+        `;
+        detailContent.innerHTML = content;
+      } else {
+        detailContent.innerHTML = `<h2>Place Not Found</h2><p>The place you are looking for does not exist.</p>`;
+      }
+    }
+
+    // Initialize details on page load
+    window.onload = displayDetails;
+  </script>
+</body>
+</html>

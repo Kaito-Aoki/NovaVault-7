@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Explore Kutch</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Custom Styles */
+
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    /* Navbar Styles */
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    .navbar .form-inline input {
+      font-size: 1rem;
+      padding: 0.5rem;
+      border-radius: 5px;
+    }
+
+    /* Header Styles */
+    .header {
+      padding: 60px 0;
+      background: url('https://via.placeholder.com/1500x400') no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+
+    /* Card Container */
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin: 0 -10px; /* Negative margin for left and right spacing */
+    }
+
+    .card-container .card {
+      flex: 0 0 20%;
+      max-width: 20%;
+      box-sizing: border-box;
+      padding: 10px;
+      transition: transform 0.3s;
+      margin-bottom: 20px; /* Space between rows */
+    }
+
+    .card-container .card:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1200px) {
+      .card-container .card {
+        flex: 0 0 25%;
+        max-width: 25%;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .card-container .card {
+        flex: 0 0 33.33%;
+        max-width: 33.33%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .card-container .card {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .card-container .card {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+
+    /* Card Image */
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* Card Title */
+    .card-title {
+      font-weight: 700;
+      color: #343a40;
+    }
+
+    /* Section Titles */
+    h3 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #343a40;
+      text-align: left;
+      padding-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">NovaVault</a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <!-- Navigation Links and Search Bar -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Share Your Stories!</a>
+        </li>
+      </ul>
+      
+      <!-- Search Bar Positioned to the Right -->
+      <form class="form-inline ml-auto">
+        <input class="form-control" type="search" id="searchInput" placeholder="Search for places..." aria-label="Search">
+      </form>
+    </div>
+  </nav>
+
+  <!-- Header Section -->
+  <div class="header">
+    <h1>Discover the Wonders of Kutch</h1>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container-fluid mt-4">
+    <!-- Must Visit Section -->
+    <h3>Must Visit</h3>
+    <div class="card-container" id="mustVisit">
+      <!-- Cards will be dynamically generated here -->
+    </div>
+
+    <!-- Hidden Gems Section -->
+    <h3>Hidden Gems</h3>
+    <div class="card-container" id="hiddenGems">
+      <!-- Cards will be dynamically generated here -->
+    </div>
+
+    <!-- Unique Experiences Section -->
+    <h3>Unique Experiences</h3>
+    <div class="card-container" id="uniqueExperiences">
+      <!-- Cards will be dynamically generated here -->
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and Dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script>
+    // Array to store place information with actual Kutch locations
+    const places = [
+      // Must Visit
+      { 
+        index: 0, 
+        category: "Must Visit", 
+        title: "Rann of Kutch", 
+        description: "A vast salt marsh known for its stunning white landscape and the Rann Utsav festival.", 
+        tags: ["salt marsh", "Rann Utsav", "festival", "white landscape", "desert"],
+        image: "Imagaes/runn of kutch.jpg" // Local image path
+      },
+      { 
+        index: 1, 
+        category: "Must Visit", 
+        title: "Kalo Dungar", 
+        description: "The highest point in Kutch offering panoramic views of the Great Rann and the Pakistani border.", 
+        tags: ["viewpoint", "highest point", "panoramic", "Great Rann", "border"],
+        image: "images/kalo_dungar.jpg" // Local image path
+      },
+      { 
+        index: 2, 
+        category: "Must Visit", 
+        title: "Mandvi Beach", 
+        description: "A pristine beach ideal for relaxation and water activities, famous for its Vijay Vilas Palace.", 
+        tags: ["beach", "Vijay Vilas Palace", "water activities", "relaxation", "pristine"],
+        image: "images/mandvi_beach.jpg" // Local image path
+      },
+      { 
+        index: 3, 
+        category: "Must Visit", 
+        title: "Banni Grasslands", 
+        description: "A unique ecosystem home to diverse flora and fauna, perfect for wildlife enthusiasts.", 
+        tags: ["grasslands", "wildlife", "ecosystem", "flora", "fauna"],
+        image: "images/banni_grasslands.jpg" // Local image path
+      },
+      { 
+        index: 4, 
+        category: "Must Visit", 
+        title: "Narayan Sarovar", 
+        description: "A sacred lake surrounded by temples, attracting pilgrims and nature lovers alike.", 
+        tags: ["sacred lake", "temples", "pilgrimage", "nature", "spiritual"],
+        image: "images/narayan_sarovar.jpg" // Local image path
+      },
+    
+      // Hidden Gems
+      { 
+        index: 5, 
+        category: "Hidden Gems", 
+        title: "Kutch Desert Wildlife Sanctuary", 
+        description: "A sanctuary that conserves the unique wildlife of the Kutch region, including the Indian wild ass.", 
+        tags: ["wildlife sanctuary", "Indian wild ass", "conservation", "unique wildlife"],
+        image: "images/kutch_desert_wildlife_sanctuary.jpg" // Local image path
+      },
+      { 
+        index: 6, 
+        category: "Hidden Gems", 
+        title: "Bhujodi Village", 
+        description: "A crafts village renowned for its traditional handicrafts and weaving techniques.", 
+        tags: ["crafts", "village", "handicrafts", "weaving", "traditional"],
+        image: "images/bhujodi_village.jpg" // Local image path
+      },
+      { 
+        index: 7, 
+        category: "Hidden Gems", 
+        title: "Dhordo Village", 
+        description: "Famous for its cultural festivals and vibrant local lifestyle, offering a glimpse into the Kutch culture.", 
+        tags: ["village", "cultural festivals", "local lifestyle", "Kutch culture"],
+        image: "images/dhordo_village.jpg" // Local image path
+      },
+      { 
+        index: 8, 
+        category: "Hidden Gems", 
+        title: "Kutch Craft Village", 
+        description: "A vibrant village showcasing the rich craft heritage of Kutch through workshops and exhibitions.", 
+        tags: ["crafts", "workshops", "exhibitions", "heritage", "culture"],
+        image: "images/kutch_craft_village.jpg" // Local image path
+      },
+    
+      // Unique Experiences
+      { 
+        index: 9, 
+        category: "Unique Experiences", 
+        title: "Hot Air Balloon Ride", 
+        description: "Experience Kutch from the sky with breathtaking views during sunrise or sunset.", 
+        tags: ["adventure", "hot air balloon", "sunrise", "sunset", "views"],
+        image: "images/hot_air_balloon_ride.jpg" // Local image path
+      },
+      { 
+        index: 10, 
+        category: "Unique Experiences", 
+        title: "Cultural Dance Performances", 
+        description: "Enjoy mesmerizing performances of traditional dances showcasing Kutch's rich culture.", 
+        tags: ["dance", "performances", "culture", "traditional", "mesmerizing"],
+        image: "images/cultural_dance_performances.jpg" // Local image path
+      },
+      { 
+        index: 11, 
+        category: "Unique Experiences", 
+        title: "Rann Utsav Camping", 
+        description: "Camp under the stars and experience the magic of Kutch during the Rann Utsav festival.", 
+        tags: ["camping", "Rann Utsav", "stars", "festival", "experience"],
+        image: "images/rann_utsav_camping.jpg" // Local image path
+      },
+      { 
+        index: 12, 
+        category: "Unique Experiences", 
+        title: "Local Cuisine Tasting", 
+        description: "Indulge in the unique flavors of Kutch with traditional dishes and local delicacies.", 
+        tags: ["cuisine", "tasting", "food", "traditional", "delicacies"],
+        image: "images/local_cuisine_tasting.jpg" // Local image path
+      }
+    ];
+
+    // Function to display places based on category
+    function displayPlaces() {
+      const mustVisitContainer = document.getElementById("mustVisit");
+      const hiddenGemsContainer = document.getElementById("hiddenGems");
+      const uniqueExperiencesContainer = document.getElementById("uniqueExperiences");
+
+      places.forEach(place => {
+        const card = `
+          <div class="card">
+            <img src="${place.image}" class="card-img-top" alt="${place.title}">
+            <div class="card-body">
+              <h5 class="card-title">${place.title}</h5>
+              <p class="card-text">${place.description}</p>
+              <p class="card-text"><small class="text-muted">Tags: ${place.tags.join(', ')}</small></p>
+            </div>
+          </div>
+        `;
+
+        // Append card to the appropriate category container
+        if (place.category === "Must Visit") {
+          mustVisitContainer.innerHTML += card;
+        } else if (place.category === "Hidden Gems") {
+          hiddenGemsContainer.innerHTML += card;
+        } else if (place.category === "Unique Experiences") {
+          uniqueExperiencesContainer.innerHTML += card;
+        }
+      });
+    }
+
+    // Search function
+    function searchPlaces() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const allCards = document.querySelectorAll(".card");
+
+      allCards.forEach(card => {
+        const title = card.querySelector(".card-title").textContent.toLowerCase();
+        const tags = card.querySelector(".text-muted").textContent.toLowerCase();
+
+        if (title.includes(input) || tags.includes(input)) {
+          card.style.display = ""; // Show card
+        } else {
+          card.style.display = "none"; // Hide card
+        }
+      });
+    }
+
+    // Event Listener for search input
+    document.getElementById("searchInput").addEventListener("input", searchPlaces);
+
+    // Initial display of places
+    displayPlaces();
+  </script>
+</body>
+</html>

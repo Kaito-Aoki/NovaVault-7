@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Kutch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Styles/gujratstyle.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        .section {
+            display: none;
+        }
+        .active-section {
+            display: block;
+        }
+        #hotels-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .hotel-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+        .hotel-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .hotel-card p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .hotel-card a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .hotel-card a:hover {
+            text-decoration: underline;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header id="topbar">
+        <div class="logo">
+            <h1><i class="fas fa-map-marked-alt"></i> Explore Kutch</h1>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button id="searchButton"><i class="fas fa-search"></i></button>
+        </div>
+        <a href="#" class="home-button"><i class="fas fa-home"></i></a>
+    </header>
+
+    <div class="main-container">
+        <nav id="side-menu">
+            <!-- User profile section -->
+            <div class="user-profile">
+                <img src="Images/Modi.jpeg" alt="User Profile Picture" class="profile-pic">
+                <p class="user-name">Narendra Modi</p>
+            </div>
+            
+            <!-- Menu options -->
+            <a href="#" class="nav-button" data-section="overview"><i class="fas fa-info-circle"></i> Overview</a>
+            <a href="#" class="nav-button" data-section="places"><i class="fas fa-landmark"></i> Places</a>
+            <a href="#" class="nav-button" data-section="cuisines"><i class="fas fa-utensils"></i> Cuisines</a>
+            <a href="#" class="nav-button" data-section="events"><i class="fas fa-calendar-alt"></i> Events</a>
+            <a href="#" class="nav-button" data-section="hotels"><i class="fas fa-hotel"></i> Hotels</a>
+
+            <!-- Profile link at the bottom -->
+            <a href="Local/local.html" class="nav-button user-profile-link"><i class="fas fa-user"></i> Local Travels</a>
+        </nav>
+
+        <main id="content-area">
+            <section id="overview-section" class="section active-section">
+                <h2><i class="fas fa-info-circle"></i> Overview of Kutch</h2>
+                <div class="section-content">
+                    <img src="Images/Katch.jpg" alt="Kutch Landscape" class="section-image centered-image">
+                    <p class="intro">
+                        Experience the rich cultural heritage and breathtaking landscapes of Gujarat’s vibrant region. 
+                        Kutch, located in the westernmost part of Gujarat, India, offers a unique and unforgettable adventure with its stunning white salt desert, traditional crafts, and vibrant festivals.
+                    </p>
+                </div>
+                
+                <div class="key-attractions">
+                    <h3>Key Attractions</h3>
+                    <ul>
+                        <li><strong>Rann of Kutch:</strong> Explore the vast salt desert that transforms into a dazzling white expanse under the moonlight. Don’t miss the Rann Utsav, a vibrant festival celebrating the culture, crafts, and music of Kutch.</li>
+                        <li><strong>Kutch Museums:</strong> Visit the Kutch Museum, home to a vast collection of artifacts, and the Gujarat State Handicrafts Emporium, showcasing the region's intricate crafts.</li>
+                        <li><strong>Vijay Vilas Palace:</strong> Marvel at the architectural splendor of this royal residence, known for its stunning blend of Rajput and Mughal styles. Discover its historical significance and plan your visit to experience its grandeur.</li>
+                        <li><strong>Local Crafts:</strong> Admire the traditional handicrafts of Kutch, including exquisite embroidery, pottery, and textiles that reflect the region’s artistic heritage.</li>
+                    </ul>
+                </div>
+                
+                <hr> <!-- Divider between sections -->
+                
+                <div class="cultural-highlights">
+                    <h3>Cultural Highlights</h3>
+                    <ul>
+                        <li><strong>Festivals:</strong> Dive into the lively celebrations of festivals such as the Rann Utsav, Holi, and Navratri. Experience the colorful festivities, traditional music, and dance that bring Kutch to life.</li>
+                        <li><strong>Local Cuisine:</strong> Savor the unique flavors of Kutch with dishes like Kutchhi Dhokla, Kachori, and Kutchi Kadhi. Enjoy the region’s distinctive culinary traditions that delight the palate.</li>
+                        <li><strong>Crafts and Handicrafts:</strong> Discover the artistry of Kutch’s craftspeople. From vibrant embroidery to intricate beadwork, the region’s handicrafts are a testament to its rich cultural tapestry.</li>
+                    </ul>
+                </div>
+                
+                <hr> <!-- Divider between sections -->
+                
+                <div class="practical-info">
+                    <h3>Practical Information</h3>
+                    <ul>
+                        <li><strong>Travel Tips:</strong> The best time to visit Kutch is during the winter months from November to February. Plan your trip by considering local transportation options and cultural customs.</li>
+                        <li><strong>Accommodation:</strong> Choose from a range of hotels and lodges in Kutch, catering to various budgets. Explore comfortable stays that enhance your visit.</li>
+                        <li><strong>Weather Information:</strong> Check the current weather conditions or learn about the climate throughout the year to plan your visit accordingly.</li>
+                    </ul>
+                </div>
+                
+                <hr> <!-- Divider between sections -->
+                
+                <div class="interactive-map">
+                    <h3>Interactive Map</h3>
+                    <p>Discover key locations in Kutch, including Vijay Vilas Palace, Rann of Kutch, and other must-see sites on our interactive map.</p>
+                </div>
+                
+                <hr> <!-- Divider between sections -->
+                
+                <div class="user-reviews">
+                    <h3>User Reviews</h3>
+                    <blockquote>
+                        <p>“Kutch is a hidden gem! The Rann Utsav was a magical experience, and the local crafts are simply beautiful.” – <em>[Name]</em></p>
+                        <p>“The Vijay Vilas Palace is a must-visit. Its architecture is breathtaking, and the local cuisine is delicious!” – <em>[Name]</em></p>
+                    </blockquote>
+                </div>
+            </section>            
+                                    
+            <section id="places-section" class="section">
+                <h2><i class="fas fa-landmark"></i> Places to Visit (<span id="places-count">0</span>)</h2>
+                <div class="filters">
+                    <select id="typeFilter">
+                        <option value="all">All Types</option>
+                        <option value="Famous">Famous</option>
+                        <option value="Underrated">Underrated</option>
+                    </select>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="Monument">Monument</option>
+                        <option value="Nature">Nature</option>
+                        <option value="Historical">Historical</option>
+                        <option value="Religious">Religious</option>
+                    </select>
+                </div>
+                <div id="places-container" class="card-container"></div>
+            </section>
+
+            <section id="cuisines-section" class="section">
+                <h2><i class="fas fa-utensils"></i> Cuisines of Gujarat (<span id="cuisines-count">0</span>)</h2>
+                <div id="cuisines-container" class="card-container"></div>
+            </section>
+
+            <section id="events-section" class="section">
+                <h2><i class="fas fa-calendar-alt"></i> Events in Gujarat</h2>
+                <div id="events-container" class="card-container"></div>
+            </section>
+
+            <section id="hotels-section" class="section">
+                <h2><i class="fas fa-hotel"></i> Hotels in Gujarat (<span id="hotels-count">0</span>)</h2>
+                <p>Discover some great hotels across Gujarat.</p>
+                <div id="hotels-list"></div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation functionality
+            const navButtons = document.querySelectorAll('.nav-button');
+            const sections = document.querySelectorAll('.section');
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    sections.forEach(section => {
+                        section.classList.remove('active-section');
+                    });
+                    document.getElementById(`${sectionId}-section`).classList.add('active-section');
+                });
+            });
+
+            // Hotels functionality
+            let hotelsList = document.getElementById('hotels-list');
+            const hotelsSection = document.getElementById('hotels-section');
+            
+            if (!hotelsList && hotelsSection) {
+                hotelsList = document.createElement('div');
+                hotelsList.id = 'hotels-list';
+                hotelsSection.appendChild(hotelsList);
+            }
+
+            if (!hotelsList) {
+                console.error('Could not find or create element with id "hotels-list"');
+                return;
+            }
+
+            // Mock API call (replace this with a real API when available)
+            const mockHotels = [
+                { id: 1, name: "Taj Gateway Hotel", type: "Luxury", city: "Ahmedabad", rating: 4.5, website: "https://www.tajhotels.com/" },
+                { id: 2, name: "The House of MG", type: "Heritage", city: "Ahmedabad", rating: 4.3, website: "https://houseofmg.com/" },
+                { id: 3, name: "Fortune Landmark", type: "Business", city: "Ahmedabad", rating: 4.0, website: "https://www.fortunehotels.in/" },
+                { id: 4, name: "Cambay Grand", type: "Resort", city: "Gandhinagar", rating: 4.2, website: "https://www.cambayhotels.com/" },
+                { id: 5, name: "Courtyard by Marriott", type: "Business", city: "Surat", rating: 4.4, website: "https://www.marriott.com/" },
+                { id: 6, name: "The Fern", type: "Eco-friendly", city: "Rajkot", rating: 4.1, website: "https://www.fernhotels.com/" },
+                { id: 7, name: "Lemon Tree Premier", type: "Business", city: "Vadodara", rating: 4.0, website: "https://www.lemontreehotels.com/" },
+                { id: 8, name: "Sarovar Portico", type: "Business", city: "Bhavnagar", rating: 3.9, website: "https://www.sarovarhotels.com/" },
+                { id: 9, name: "The Grand Bhagwati", type: "Luxury", city: "Surat", rating: 4.3, website: "https://www.tgbhotels.com/" },
+                { id: 10, name: "Ginger Hotel", type: "Budget", city: "Ahmedabad", rating: 3.8, website: "https://www.gingerhotels.com/" }
+            ];
+
+            // Display hotels
+            mockHotels.forEach(hotel => {
+                const hotelCard = document.createElement('div');
+                hotelCard.className = 'hotel-card';
+                hotelCard.innerHTML = `
+                    <h3>${hotel.name}</h3>
+                    <p>Type: ${hotel.type}</p>
+                    <p>City: ${hotel.city}</p>
+                    <p>Rating: ${hotel.rating}/5</p>
+                    <p>Website: <a href="${hotel.website}" target="_blank">${hotel.website}</a></p>
+                    <button onclick="bookHotel('${hotel.id}')">Book Now</button>
+                `;
+                hotelsList.appendChild(hotelCard);
+            });
+
+            // Update the hotels count
+            const hotelsCount = document.getElementById('hotels-count');
+            if (hotelsCount) {
+                hotelsCount.textContent = mockHotels.length;
+            }
+        });
+
+        function bookHotel(hotelId) {
+            alert(`You're about to book hotel with ID: ${hotelId}`);
+            // In a real application, this could open a modal with booking options or navigate to a booking page
+        }
+    </script>
+    
+    <script type="module" src="Scripts/gujratscript.js"></script>
+</body>
+</html>
